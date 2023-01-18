@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<script src="echarts.min.js"></script>
+</head>
+<body>
+    <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+    <div id="main" style="width: 600px;height:400px;"></div>
+    <script type="text/javascript">
+        // 基于准备好的dom，初始化echarts实例
+        var myChart = echarts.init(document.getElementById('main'));
+ 
+        // 指定图表的配置项和数据
+        var option = {
+            title: {
+                left:'center',
+                text: '2012-2022二手房交易量'
+            },
+            tooltip: {
+                trigger: 'axis',
+                position: function (pt) {
+                    return [pt[0], '10%'];
+                    }
+            },
+            xAxis: {
+                data: ["2012","2013","2014","2015","2016","2017","2018","2019","2020","2021","2022"]
+            },
+            yAxis: {},
+            toolbox: {
+                feature: {
+                    dataZoom: {
+                        backgroundColor:'rgba(255,70,131,0.2)',
+                        borderColor:'rgba(255,70,131)',
+                        yAxisIndex: 'none'
+                    },
+                restore: {},
+                saveAsImage: {}
+                }
+            },
+            dataZoom: [{
+                type: 'inside',
+                start: 40,
+                end: 100
+            },
+            {
+                start: 40,
+                end: 100,
+                //backgroundColor: 'rgba(255,158,68,0.2)',       // 背景颜色
+                //dataBackgroundColor: '#eee',            // 数据背景颜色
+                //fillerColor: 'rgba(255,158,68,0.2)',   // 填充颜色
+                //handleColor: 'rgba(255,158,68,0.8)',    // 手柄颜色
+                //borderColor:'rgba(255,158,68,0.5)',
+            }
+            ],
+            series: [{
+                name: '数量',
+                type: 'line',
+                itemStyle: {
+                    color: 'rgb(255, 70, 131)'
+                },
+                areaStyle: {
+                color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+                    {
+                        offset: 0,
+                        color: 'rgb(255, 70, 131,0.8)'
+                    },
+                    {
+                        offset: 1,
+                        color: 'rgb(255, 255, 255,0.6)'
+                    }
+                ])
+                },
+                label: {
+                    show: true,
+                    position: 'top'
+                },
+                data: [20, 31.6, 19.63, 36.47, 38.6, 14.77,16.3,22.48,30.2,28.1,16]
+            }]
+        };
+ 
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
+    </script>
+</body>
+</html>
